@@ -1,9 +1,17 @@
 #### 1. 并查集
 ```cpp
+int pre[MAXN];
+void init(int n) {
+    for (int i = 0; i < n; ++i)
+        pre[i] = i;
+}
 int find(int x) { 
+    // pre[x] == x indicates that x is a root node.
+    // pre[x] = find(pre[x]) just do the path compression.
     return pre[x] == x ? x : pre[x] = find(pre[x]); 
 }
 void merge(int a, int b){
+    // Merge two sets.
     pre[find(a)] = find(b);
 }
 ```
